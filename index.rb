@@ -1,4 +1,4 @@
-class index < Formula
+class Index < Formula
   desc "Lightweight agent orchestrator for the Claude API"
   homepage "https://github.com/tylerreckart/index"
   url "https://github.com/tylerreckart/index/archive/refs/tags/v0.2.2.tar.gz"

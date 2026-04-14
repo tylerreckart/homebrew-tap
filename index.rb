@@ -1,10 +1,10 @@
-class Claudius < Formula
+class index < Formula
   desc "Lightweight agent orchestrator for the Claude API"
   homepage "https://github.com/tylerreckart/index"
   url "https://github.com/tylerreckart/index/archive/refs/tags/v0.2.2.tar.gz"
   sha256 "26aa2d9442278b47a56a194747e5ecfa093948892ec54a9c3e2b4bfacf4ced85"
   license "MIT"
-  head "https://github.com/tylerreckart/claudius.git", branch: "main"
+  head "https://github.com/tylerreckart/index.git", branch: "main"
 
   depends_on "cmake" => :build
   depends_on "openssl@3"
@@ -17,13 +17,13 @@ class Claudius < Formula
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
 
-    bin.install "scripts/claudius-cli.sh" => "claudius-cli"
+    bin.install "scripts/index-cli.sh" => "index-cli"
   end
 
   def post_install
     # Create config dir structure — don't run --init automatically
     # because it generates auth tokens that should be user-initiated
-    (var/"claudius").mkpath
+    (var/"index").mkpath
   end
 
   def caveats
@@ -31,19 +31,19 @@ class Claudius < Formula
       To get started:
 
         export ANTHROPIC_API_KEY="sk-ant-..."
-        claudius --init
-        claudius
+        index --init
+        index
 
-      Config lives in ~/.claudius/
-      Agent definitions go in ~/.claudius/agents/*.json
+      Config lives in ~/.index/
+      Agent definitions go in ~/.index/agents/*.json
 
       To start the remote server:
 
-        claudius --serve --port 9077
+        index --serve --port 9077
     EOS
   end
 
   test do
-    assert_match "v0.1.0", shell_output("#{bin}/claudius --help")
+    assert_match "v0.1.0", shell_output("#{bin}/index --help")
   end
 end

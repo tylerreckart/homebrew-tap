@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # ─────────────────────────────────────────────
-# Claudius installer
+# index installer
 # Usage: ./install.sh
 # ─────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PREFIX="${CLAUDIUS_PREFIX:-/usr/local}"
+PREFIX="${index_PREFIX:-/usr/local}"
 BUILD_DIR="${SCRIPT_DIR}/build"
 JOBS="$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 4)"
 
@@ -57,7 +57,7 @@ fi
 
 # ── 2. Build ─────────────────────────────────
 
-info "Building claudius..."
+info "Building index..."
 mkdir -p "${BUILD_DIR}"
 cd "${BUILD_DIR}"
 
@@ -72,7 +72,7 @@ make -j"${JOBS}" 2>&1 | sed 's/^/  /'
 
 # ── 3. Install ───────────────────────────────
 
-info "Installing to ${PREFIX}/bin/claudius ..."
+info "Installing to ${PREFIX}/bin/index ..."
 
 # Ensure bin dir exists
 mkdir -p "${PREFIX}/bin" 2>/dev/null || sudo mkdir -p "${PREFIX}/bin"
@@ -87,42 +87,42 @@ install_file() {
     fi
 }
 
-install_file "${BUILD_DIR}/claudius" "${PREFIX}/bin/claudius"
-install_file "${SCRIPT_DIR}/scripts/claudius-cli.sh" "${PREFIX}/bin/claudius-cli"
-chmod +x "${PREFIX}/bin/claudius-cli" 2>/dev/null || sudo chmod +x "${PREFIX}/bin/claudius-cli"
+install_file "${BUILD_DIR}/index" "${PREFIX}/bin/index"
+install_file "${SCRIPT_DIR}/scripts/index-cli.sh" "${PREFIX}/bin/index-cli"
+chmod +x "${PREFIX}/bin/index-cli" 2>/dev/null || sudo chmod +x "${PREFIX}/bin/index-cli"
 
 # ── 4. Init config (if first install) ────────
 
-CLAUDIUS_DIR="${HOME}/.claudius"
-if [[ ! -d "${CLAUDIUS_DIR}" ]]; then
-    info "First install — initializing ~/.claudius/ ..."
-    "${PREFIX}/bin/claudius" --init
+INDEX_DIR="${HOME}/.index"
+if [[ ! -d "${INDEX_DIR}" ]]; then
+    info "First install — initializing ~/.index/ ..."
+    "${PREFIX}/bin/index" --init
 else
-    dim "~/.claudius/ exists — skipping init (run 'claudius --init' to reinitialize)"
+    dim "~/.index/ exists — skipping init (run 'index --init' to reinitialize)"
 fi
 
 # ── 5. API key prompt ────────────────────────
 
-if [[ -z "${ANTHROPIC_API_KEY:-}" ]] && [[ ! -f "${CLAUDIUS_DIR}/api_key" ]]; then
+if [[ -z "${ANTHROPIC_API_KEY:-}" ]] && [[ ! -f "${INDEX_DIR}/api_key" ]]; then
     echo ""
     info "No API key found."
     echo "  Set it now or later:"
     echo ""
     echo "    export ANTHROPIC_API_KEY=\"sk-ant-...\""
     echo "    # or"
-    echo "    echo 'sk-ant-...' > ~/.claudius/api_key"
+    echo "    echo 'sk-ant-...' > ~/.index/api_key"
     echo ""
 fi
 
 # ── 6. Done ──────────────────────────────────
 
 echo ""
-info "Claudius installed."
+info "index installed."
 echo ""
-echo "  claudius              Interactive REPL"
-echo "  claudius --serve      Start TCP server (port 9077)"
-echo "  claudius --send <agent> <msg>"
-echo "  claudius --help       Full usage"
+echo "  index              Interactive REPL"
+echo "  index --serve      Start TCP server (port 9077)"
+echo "  index --send <agent> <msg>"
+echo "  index --help       Full usage"
 echo ""
-echo "  claudius-cli <host> <port> <token>    Remote client"
+echo "  index-cli <host> <port> <token>    Remote client"
 echo ""

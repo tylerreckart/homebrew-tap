@@ -1,8 +1,8 @@
 class Index < Formula
   desc "Lightweight agent orchestrator for the Claude API"
   homepage "https://github.com/tylerreckart/index"
-  url "https://github.com/tylerreckart/index/archive/refs/tags/v0.2.3.tar.gz"
-  sha256 "cc25453b735ffaa26c7b5672cc9b9c71a630f515d7ce2e55afa2ee7545a31338"
+  url "https://github.com/tylerreckart/index/archive/refs/tags/v0.2.4.tar.gz"
+  sha256 "2c1e33fba85bf7c9c643f594a43ba1e2a7935dc7a10d6c76702ecc1834ff12e2"
   license "MIT"
   head "https://github.com/tylerreckart/index.git", branch: "main"
 

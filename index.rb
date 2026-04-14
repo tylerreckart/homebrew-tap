@@ -1,7 +1,7 @@
 class Claudius < Formula
   desc "Lightweight agent orchestrator for the Claude API"
-  homepage "https://github.com/tylerreckart/claudius"
-  url "https://github.com/tylerreckart/claudius/archive/refs/tags/v0.2.2.tar.gz"
+  homepage "https://github.com/tylerreckart/index"
+  url "https://github.com/tylerreckart/index/archive/refs/tags/v0.2.2.tar.gz"
   sha256 "26aa2d9442278b47a56a194747e5ecfa093948892ec54a9c3e2b4bfacf4ced85"
   license "MIT"
   head "https://github.com/tylerreckart/claudius.git", branch: "main"

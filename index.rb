@@ -44,6 +44,6 @@ class Index < Formula
   end
 
   test do
-    assert_match "v0.1.0", shell_output("#{bin}/index --help")
+    assert_match "index --init", shell_output("#{bin}/index --help")
   end
 end

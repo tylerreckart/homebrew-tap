@@ -1,9 +1,9 @@
 class Index < Formula
   desc "Lightweight agent orchestrator and TUI"
   homepage "https://github.com/tylerreckart/index"
-  url "https://github.com/tylerreckart/index/archive/refs/tags/v0.3.1.tar.gz"
-  sha256 "7b09918057c349d88ef897391049e2760c804abad797439cffbe65b11a0c07a4"
-  license "MIT"
+  url "https://github.com/tylerreckart/index/archive/refs/tags/v0.3.2.tar.gz"
+  sha256 "3763dc0e5328f3a19055283794bd7cfe9ce815fa2cdb9186c4c0722e61222f68"
+  license "CC-BY-NC 4.0"
   head "https://github.com/tylerreckart/index.git", branch: "main"
 
   depends_on "cmake" => :build
